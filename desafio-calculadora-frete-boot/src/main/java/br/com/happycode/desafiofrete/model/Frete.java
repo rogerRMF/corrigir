@@ -1,7 +1,7 @@
 package br.com.happycode.desafiofrete.model;
 
 
-import br.com.happycode.desafiofrete.UF;
+import br.com.calculadora.fretehttpcliente.UF;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

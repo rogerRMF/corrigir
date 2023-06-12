@@ -6,15 +6,15 @@ public class ProdutoDTO {
     private String descricao;
     private Double valor;
 
-    public ProdutoDTO(long l, String s, double v) {
+    public ProdutoDTO(Long id, String descricao, Double valor) {
+        this.id = id;
+        this.descricao = descricao;
+        this.valor = valor;
     }
 
     public ProdutoDTO() {
 
     }
-
-    // getters e setters
-
 
     public Long getId() {
         return id;

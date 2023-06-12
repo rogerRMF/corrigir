@@ -1,16 +1,14 @@
 package br.com.happycode.desafiofrete.model;
 
 
-import br.com.happycode.desafiofrete.UF;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import br.com.calculadora.fretehttpcliente.UF;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 
 @Entity
+@Table
 public class Cliente {
 
     @Id

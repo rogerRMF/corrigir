@@ -1,6 +1,6 @@
 package br.com.happycode.desafiofrete.model;
 
-import br.com.happycode.desafiofrete.PrecoInvalidoException;
+import br.com.happycode.desafiofrete.exception.PrecoInvalidoException;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

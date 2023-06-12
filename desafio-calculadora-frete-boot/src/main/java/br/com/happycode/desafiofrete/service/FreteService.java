@@ -1,6 +1,6 @@
 package br.com.happycode.desafiofrete.service;
 
-import br.com.happycode.desafiofrete.UF;
+import br.com.calculadora.fretehttpcliente.UF;
 import br.com.happycode.desafiofrete.dto.FreteDTO;
 import br.com.happycode.desafiofrete.model.Cliente;
 import br.com.happycode.desafiofrete.model.Frete;

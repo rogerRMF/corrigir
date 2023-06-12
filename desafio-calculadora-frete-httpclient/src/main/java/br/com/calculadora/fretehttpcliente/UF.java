@@ -1,4 +1,4 @@
-package br.com.happycode.desafiofrete;
+package br.com.calculadora.fretehttpcliente;
 
 public enum UF {
     AC("Acre"),

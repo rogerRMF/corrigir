@@ -1,0 +1,18 @@
+
+
+spring:
+  # h2 - acessa diretamente pelo navegador. habilita a interface de gerenciamento do h2
+  h2:
+    console.enabled: true
+  # datasource - configuracoes do BD
+  datasource:
+    url: jdbc:h2:~/test
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+
+    spring:
+      profiles: pro=/h2-console

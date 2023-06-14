@@ -2,13 +2,12 @@ package br.com.happycode.desafiofrete.model;
 
 
 import br.com.calculadora.fretehttpcliente.UF;
-import jakarta.persistence.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
-
 @Entity
-@Table
+@Table(name = "tb_cliente")
 public class Cliente {
 
     @Id
@@ -32,7 +31,10 @@ public class Cliente {
         this.uf = uf;
     }
 
-        public String getNome () {
+    public Cliente(String rogerio, String s, String number, String logradouro, String paulista, String jundiaí, String sp) {
+    }
+
+    public String getNome () {
             return nome;
         }
 

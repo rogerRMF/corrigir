@@ -14,11 +14,10 @@ import java.net.URISyntaxException;
 
 public class ClienteApiTerceiros {
 
-    private final String apiUrl = "https://api-de-ceps.com/cep/";
-
     public DadosEnderecoDTO obterDadosEndereco(String cep) throws IOException, URISyntaxException {
         HttpClient httpClient = HttpClientBuilder.create().build();
 
+        String apiUrl = "https://api-de-ceps.com/cep/";
         URI uri = new URI(apiUrl + cep);
         HttpGet httpGet = new HttpGet(uri);
 

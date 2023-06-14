@@ -5,9 +5,10 @@ public class DadosEnderecoDTO {
     private String logradouro;
     private String bairro;
     private String cidade;
-    private String uf;
+    private UF uf;
 
-    public DadosEnderecoDTO(String logradouro, String bairro, String cidade, String uf) {
+    public DadosEnderecoDTO(String cep, String logradouro, String bairro, String cidade, UF uf) {
+        this.cep = cep;
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.cidade = cidade;
@@ -47,10 +48,10 @@ public class DadosEnderecoDTO {
     }
 
     public UF getUf() {
-        return UF.valueOf(uf);
+        return uf;
     }
 
-    public void setUf(String uf) {
+    public void setUf(UF uf) {
         this.uf = uf;
     }
 }

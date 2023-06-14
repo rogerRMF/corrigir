@@ -1,9 +1,12 @@
 package br.com.happycode.desafiofrete.service;
 
 import br.com.calculadora.fretehttpcliente.DadosEnderecoDTO;
+import br.com.calculadora.fretehttpcliente.UF;
 import br.com.happycode.desafiofrete.dto.ClienteDTO;
 import br.com.happycode.desafiofrete.exception.ClienteNaoEncontradoException;
 import br.com.happycode.desafiofrete.model.Cliente;
+import br.com.happycode.desafiofrete.mongo.model.ClienteMongo;
+import br.com.happycode.desafiofrete.mongo.repository.ClienteRepositoryMongo;
 import br.com.happycode.desafiofrete.repository.ClienteRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -16,19 +19,26 @@ import java.util.stream.Collectors;
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
+    private final ClienteRepositoryMongo clienteRepositoryMongo;
 
-    public ClienteService(ClienteRepository clienteRepository) {
+
+    public ClienteService(ClienteRepository clienteRepository, ClienteRepositoryMongo clienteRepositoryMongo) {
         this.clienteRepository = clienteRepository;
+        this.clienteRepositoryMongo = clienteRepositoryMongo;
+
     }
 
     public ClienteDTO cadastrarCliente(ClienteDTO clienteDTO) {
         String cep = clienteDTO.getCep();
         Cliente cliente = new Cliente();
+        ClienteMongo clienteMongo = new ClienteMongo();
+        clienteMongo.setCep(clienteDTO.getCep());
+        clienteMongo.setBairro(clienteDTO.getBairro());
+        clienteMongo.setCidade(clienteDTO.getCidade());
+        clienteMongo.setNome(clienteDTO.getNome());
+        clienteMongo.setLogradouro(clienteDTO.getLogradouro());
+        clienteMongo.setUf(UF.AC);
 
-        //TO D
-       //Buscar os dados lá na api de ceps  NovaClasse
-
-        //substituir os dados do  cliente
 
         ClienteApiTerceiros clienteApiTerceiros = new ClienteApiTerceiros();
         DadosEnderecoDTO dadosEnderecoDTO = clienteApiTerceiros.obterDadosEndereco(cep);
@@ -45,6 +55,7 @@ public class ClienteService {
 
         BeanUtils.copyProperties(clienteDTO, cliente);
         cliente = clienteRepository.save(cliente);
+        clienteRepositoryMongo.save(new ClienteMongo());
         BeanUtils.copyProperties(cliente, clienteDTO);
         return clienteDTO;
     }

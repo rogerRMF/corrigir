@@ -1,5 +1,6 @@
 package br.com.happycode.desafiofrete;
 
+import br.com.happycode.desafiofrete.exception.PrecoInvalidoException;
 import br.com.happycode.desafiofrete.model.Produto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

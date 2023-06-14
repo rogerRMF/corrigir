@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class ClienteDTO {
     private Long id;
     private String nome;
-    private LocalDate dataDeAniversario;
+    private LocalDate dataDeAniversario = LocalDate.now();
     private String cep;
     private String logradouro;
     private String bairro;

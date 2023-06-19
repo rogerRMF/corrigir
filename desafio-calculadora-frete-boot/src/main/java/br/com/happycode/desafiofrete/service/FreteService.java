@@ -5,6 +5,8 @@ import br.com.happycode.desafiofrete.dto.FreteDTO;
 import br.com.happycode.desafiofrete.model.Cliente;
 import br.com.happycode.desafiofrete.model.Frete;
 import br.com.happycode.desafiofrete.model.Produto;
+import br.com.happycode.desafiofrete.mongo.model.FreteMongo;
+import br.com.happycode.desafiofrete.mongo.repository.FreteRepositoryMongo;
 import br.com.happycode.desafiofrete.repository.ClienteRepository;
 import br.com.happycode.desafiofrete.repository.FreteRepository;
 import br.com.happycode.desafiofrete.repository.ProdutoRepository;
@@ -21,11 +23,13 @@ public class FreteService {
     private final ProdutoRepository produtoRepository;
     private final ClienteRepository clienteRepository;
     private final FreteRepository freteRepository;
+    private final FreteRepositoryMongo freteRepositoryMongo;
 
-    public FreteService(ProdutoRepository produtoRepository, ClienteRepository clienteRepository, FreteRepository freteRepository) {
+    public FreteService(ProdutoRepository produtoRepository, ClienteRepository clienteRepository, FreteRepository freteRepository, FreteRepositoryMongo freteRepositoryMongo) {
         this.produtoRepository = produtoRepository;
         this.clienteRepository = clienteRepository;
         this.freteRepository = freteRepository;
+        this.freteRepositoryMongo = freteRepositoryMongo;
     }
 
     public double calcularFrete(TipoCalculo tipoCalculo, Long idProduto, Long idCliente) {
@@ -70,7 +74,10 @@ public class FreteService {
     public FreteDTO obterFrete(Long id) {
         Optional<Frete> optionalFrete = freteRepository.findById(id);
         Frete frete = optionalFrete.orElseThrow(() -> new IllegalArgumentException("Frete não encontrado"));
+
         FreteDTO freteDTO = new FreteDTO();
+        FreteMongo freteMongo = new FreteMongo();
+        freteRepositoryMongo.save(freteMongo);
         BeanUtils.copyProperties(frete, freteDTO);
         return freteDTO;
     }

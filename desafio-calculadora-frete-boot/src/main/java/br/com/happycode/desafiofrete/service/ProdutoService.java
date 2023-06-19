@@ -4,6 +4,8 @@ import br.com.happycode.desafiofrete.dto.ProdutoDTO;
 import br.com.happycode.desafiofrete.exception.PrecoInvalidoException;
 import br.com.happycode.desafiofrete.exception.ProdutoNaoEncontradoException;
 import br.com.happycode.desafiofrete.model.Produto;
+import br.com.happycode.desafiofrete.mongo.model.ProdutoMongo;
+import br.com.happycode.desafiofrete.mongo.repository.ProdutoRepositoryMongo;
 import br.com.happycode.desafiofrete.repository.ProdutoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -16,12 +18,21 @@ import java.util.stream.Collectors;
 public class ProdutoService {
 
     private final ProdutoRepository produtoRepository;
+    private final ProdutoRepositoryMongo produtoRepositoryMongo;
 
-    public ProdutoService(ProdutoRepository produtoRepository) {
+    public ProdutoService(ProdutoRepository produtoRepository, ProdutoRepositoryMongo produtoRepositoryMongo) {
         this.produtoRepository = produtoRepository;
+        this.produtoRepositoryMongo = produtoRepositoryMongo;
     }
 
+
+
     public ProdutoDTO cadastrarProduto(ProdutoDTO produtoDTO) {
+
+        ProdutoMongo produtoMongo = new ProdutoMongo();
+        produtoMongo.setDescricao(produtoDTO.getDescricao());
+        produtoMongo.setValor(produtoDTO.getValor());
+
         // Fazer validações e conversões necessárias
         if (produtoDTO.getValor() == null || produtoDTO.getValor() <= 0) {
             throw new PrecoInvalidoException("O valor do produto está inválido pois deve ser maior que zero!");
@@ -29,6 +40,8 @@ public class ProdutoService {
 
         Produto produto = new Produto();
         BeanUtils.copyProperties(produtoDTO, produto);
+
+        produtoRepositoryMongo.save(produtoMongo);
         produto = produtoRepository.save(produto);
 
         BeanUtils.copyProperties(produto, produtoDTO);

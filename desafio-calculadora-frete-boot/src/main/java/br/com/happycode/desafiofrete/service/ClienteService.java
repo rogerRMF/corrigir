@@ -55,7 +55,7 @@ public class ClienteService {
 
         BeanUtils.copyProperties(clienteDTO, cliente);
         cliente = clienteRepository.save(cliente);
-        clienteRepositoryMongo.save(new ClienteMongo());
+        clienteRepositoryMongo.save(clienteMongo);
         BeanUtils.copyProperties(cliente, clienteDTO);
         return clienteDTO;
     }

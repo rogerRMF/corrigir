@@ -1,8 +1,10 @@
-
-
 spring:
-  data.mongodb.uri: mongodb://localhost:27017/school
 
+
+
+
+  data.mongodb.uri: mongodb://localhost:27017/school
+    # h2 - acessa diretamente pelo navegador. habilita a interface de gerenciamento do h2
   h2:
     console.enabled: true
   # datasource - configuracoes do BD
@@ -12,11 +14,11 @@ spring:
     password:
     driverClassName: org.h2.Driver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
 
 
     spring:
       profiles: pro=/h2-console
-

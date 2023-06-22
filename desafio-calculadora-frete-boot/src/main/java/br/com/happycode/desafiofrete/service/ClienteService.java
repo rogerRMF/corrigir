@@ -86,7 +86,22 @@ public class ClienteService {
                 .collect(Collectors.toList());
     }
 
-    public ClienteDTO atualizarCliente(Long id, ClienteDTO clienteDTO) {
-        return clienteDTO;
+    public Cliente atualizarCliente(Long id, ClienteDTO clienteDTO) {
+        Optional<Cliente> optionalCliente = clienteRepository.findById(id);
+        if(optionalCliente.isPresent()) {
+            Cliente cliente = optionalCliente.get();
+            cliente.setNome(clienteDTO.getNome());
+            cliente.setBairro(clienteDTO.getBairro());
+            cliente.setUf(UF.fromValue(clienteDTO.getUf()));
+            cliente.setCep(cliente.getCep());
+            cliente.setLogradouro(clienteDTO.getLogradouro());
+            cliente.setDataDeAniversario(clienteDTO.getDataDeAniversario());
+            clienteRepository.save(cliente);
+            return cliente;
+        }
+        else {
+            throw new ClienteNaoEncontradoException("Cliente não encontrado");
+        }
+
     }
 }

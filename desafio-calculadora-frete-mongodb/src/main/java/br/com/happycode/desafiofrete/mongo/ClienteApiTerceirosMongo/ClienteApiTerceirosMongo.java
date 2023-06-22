@@ -1,4 +1,4 @@
-package br.com.calculadora.fretehttpcliente;
+package br.com.happycode.desafiofrete.mongo.ClienteApiTerceirosMongo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
@@ -7,14 +7,16 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class ClienteApiTerceiros {
+@Component
+public class ClienteApiTerceirosMongo {
 
-    public DadosEnderecoDTO obterDadosEndereco(String cep) throws IOException, URISyntaxException {
+    public DadosEnderecosDTOMongo obterDadosEnderecosDTOMongo(String cep) throws IOException, URISyntaxException {
         HttpClient httpClient = HttpClientBuilder.create().build();
 
         String apiUrl = "https://api-de-ceps.com/cep/";
@@ -28,14 +30,9 @@ public class ClienteApiTerceiros {
             String responseBody = EntityUtils.toString(entity);
 
             ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.readValue(responseBody, DadosEnderecoDTO.class);
+            return objectMapper.readValue(responseBody, DadosEnderecosDTOMongo.class);
         }
 
         return null;
     }
-
-    public DadosEnderecoDTO obterDadosEnderecosDTOMongo(String cep) {
-        return null;
-    }
 }
-

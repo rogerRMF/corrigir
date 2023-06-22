@@ -9,17 +9,11 @@ public class ProdutoMongo {
 
     @Id
     @Field("_id")
-    private Long id;
+    private String id;
     private String descricao;
     private Double valor;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDescricao() {
         return descricao;
@@ -35,5 +29,13 @@ public class ProdutoMongo {
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

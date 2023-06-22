@@ -1,5 +1,4 @@
-package br.com.calculadora.fretehttpcliente;
-
+package br.com.happycode.desafiofrete.mongo;
 public enum UF {
     AC("Acre"),
     AL("Alagoas"),
@@ -38,7 +37,6 @@ public enum UF {
     public String getDescricao() {
         return descricao;
     }
-
     public static UF fromValue(String value) {
         for (UF uf : UF.values()){
             if (uf.descricao.equalsIgnoreCase(value)){
@@ -48,4 +46,5 @@ public enum UF {
 
         return null;
     }
+
 }

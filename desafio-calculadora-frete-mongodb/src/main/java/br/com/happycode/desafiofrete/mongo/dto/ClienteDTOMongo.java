@@ -1,28 +1,25 @@
-package br.com.happycode.desafiofrete.mongo.model;
-
-import br.com.calculadora.fretehttpcliente.UF;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.data.mongodb.core.mapping.FieldType;
+package br.com.happycode.desafiofrete.mongo.dto;
 
 import java.time.LocalDate;
 
-@Document(collection = "cliente")
-public class ClienteMongo {
+public class ClienteDTOMongo {
 
-    @Id
-    @Field(value = "_id",targetType = FieldType.OBJECT_ID)
-    private String id;
+    private Long id;
     private String nome;
-    private LocalDate dataDeAniversario;
-    private String cep;
+    private LocalDate dataDeAniversario = LocalDate.now();
+    private static String cep;
     private String logradouro;
     private String bairro;
     private String cidade;
-    private UF uf;
+    private String uf;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -40,7 +37,7 @@ public class ClienteMongo {
         this.dataDeAniversario = dataDeAniversario;
     }
 
-    public String getCep() {
+    public static String getCep() {
         return cep;
     }
 
@@ -72,19 +69,11 @@ public class ClienteMongo {
         this.cidade = cidade;
     }
 
-    public UF getUf() {
+    public String getUf() {
         return uf;
     }
 
-    public void setUf(UF uf) {
+    public void setUf(String uf) {
         this.uf = uf;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }

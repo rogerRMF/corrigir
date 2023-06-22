@@ -1,8 +1,8 @@
 package br.com.happycode.desafiofrete.controller;
 
 import br.com.happycode.desafiofrete.dto.ClienteDTO;
+import br.com.happycode.desafiofrete.model.Cliente;
 import br.com.happycode.desafiofrete.service.ClienteService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,8 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/clientes")
-@Api(value="API REST clientes")
-@CrossOrigin(origins = "*")
 public class ClienteController {
 
     @Autowired
@@ -43,8 +41,8 @@ public class ClienteController {
 
     @PutMapping("/{id}")
     @ApiOperation(value="Atualiza um cliente")
-    public ResponseEntity<ClienteDTO> atualizarCliente(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO) {
-        ClienteDTO clienteAtualizado = clienteService.atualizarCliente(id, clienteDTO);
+    public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO) {
+        Cliente clienteAtualizado = clienteService.atualizarCliente(id, clienteDTO);
         if (clienteAtualizado == null) {
             return ResponseEntity.notFound().build();
         }
@@ -55,7 +53,7 @@ public class ClienteController {
     @ApiOperation(value="Deleta um produto")
     public ResponseEntity<Void> deletarCliente(@PathVariable Long id) {
         clienteService.deletarCliente(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
